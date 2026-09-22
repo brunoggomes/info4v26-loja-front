@@ -1,0 +1,10 @@
+@for(p of produtos(); track p.id) {
+    <p>{{p.nome}}</p>
+    <p>{{p.preco}}</p>
+
+    <div>
+        <input type="button" 
+               (click)="adicionar(p)"
+               value="Adicionar ao carrinho">
+    </div>
+}
