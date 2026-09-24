@@ -2,9 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { LojaService } from '../loja-service';
 import { Produto } from '../produto';
 import { CarrinhoService } from '../carrinho-service';
+import { Carrinho } from '../carrinho/carrinho';
+import { Item } from '../item';
 
 @Component({
-  imports: [],
+  imports: [Carrinho],
   selector: 'app-inicio',
   styleUrl: './inicio.scss',
   templateUrl: './inicio.html',
@@ -23,8 +25,7 @@ export class Inicio implements OnInit {
   }
 
   adicionar(p: Produto) {
-    //Criar um item a partir do produto a ser adicionado
-    //adicionar o item ao carrinho
-    
+    let it = new Item(p, 1)
+    this.#carrinho.adicionar(it)
   }
 }

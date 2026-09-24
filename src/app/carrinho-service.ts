@@ -19,6 +19,7 @@ export class CarrinhoService {
     adicionar(novo: Item): boolean {
       if (!this.estaAdicionado(novo)) { 
         this.#_itens.update(lista => [...lista, novo])
+        console.log(this.itens())
         return true
       } 
       return false
