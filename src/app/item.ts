@@ -1,14 +1,27 @@
 import { Produto } from "./produto";
 
 export class Item {
-    #produto: Produto 
-    #quantidade: number = 0
-
+    #_produto: Produto 
+    #_quantidade: number = 0
     constructor(prod: Produto, qnt: number) {
-        this.#produto = prod
+        this.#_produto = prod
 
         if (qnt > 0) {
-            this.#quantidade = qnt
+            this.#_quantidade = qnt
         }
+    }
+    set produto(p: Produto) {
+        this.#_produto = p
+    }
+    get produto(): Produto {
+        return this.#_produto
+    }
+    set quantidade(q: number) {
+        if (q >= 0) {
+            this.#_quantidade = q
+        }
+    }
+    get quantidade(): number {
+        return this.#_quantidade
     }
 }
