@@ -10,7 +10,5 @@ export class Item {
         if (qnt > 0) {
             this.quantidade = qnt
         }
-
-        this.quantidade = 0
     }
 }

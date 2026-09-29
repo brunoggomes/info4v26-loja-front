@@ -55,12 +55,12 @@ export class CarrinhoService {
 
   /** Salva as informações na sessão do navegador */
   salvarCarrinhoSessao() {
-    sessionStorage.setItem('CARRINHO_LOJAIF', 
+    localStorage.setItem('CARRINHO_LOJAIF', 
                            JSON.stringify(this.#_itens()))
   }
 
   recuperarCarrinhoSessao(): Item[] | null {
-    let itens = sessionStorage.getItem('CARRINHO_LOJAIF')
+    let itens = localStorage.getItem('CARRINHO_LOJAIF')
     if (itens) {
       return JSON.parse(itens)
     }
