@@ -27,5 +27,6 @@ export class Inicio implements OnInit {
   adicionar(p: Produto) {
     let it = new Item(p, 1)
     this.#carrinho.adicionar(it)
+    console.log(this.#carrinho.itens())
   }
 }

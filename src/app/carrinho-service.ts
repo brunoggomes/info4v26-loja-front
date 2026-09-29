@@ -17,13 +17,23 @@ export class CarrinhoService {
     return qtd
   })
 
+  constructor() {
+    let itens = this.recuperarCarrinhoSessao()
+
+    if (itens) {
+      this.#_itens.set(itens)
+    }
+  }
+ 
    adicionar(novo: Item): boolean {
     if (this.estaAdicionado(novo)) {
       this.aumentarQuantidade(novo)
+      this.salvarCarrinhoSessao()
       return false
     }
 
     this.#_itens.update(lista => [...lista, novo])
+    this.salvarCarrinhoSessao()
     return true
   }
 
@@ -38,9 +48,22 @@ export class CarrinhoService {
         if (item.produto?.id === it.produto?.id) {
           item.quantidade++;
         }
-
         return item;
       })
     );
+  }
+
+  /** Salva as informações na sessão do navegador */
+  salvarCarrinhoSessao() {
+    sessionStorage.setItem('CARRINHO_LOJAIF', 
+                           JSON.stringify(this.#_itens()))
+  }
+
+  recuperarCarrinhoSessao(): Item[] | null {
+    let itens = sessionStorage.getItem('CARRINHO_LOJAIF')
+    if (itens) {
+      return JSON.parse(itens)
+    }
+    return null
   }
 }
